@@ -46,8 +46,14 @@ public class Library {
         }
         r.takeHome();
     }
-    void returnBook(Readable r){
-        r.returnBook();
+    void returnBook(Readable r) {
+        if(!r.isAvailable()){
+            r.returnBook();
+        }
+        else{
+            System.out.println("The book is already back");
+        }
+
     }
 
 

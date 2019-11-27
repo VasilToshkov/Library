@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5fe82e89-a579-4a99-b171-b655f9608a41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Library/Library/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Library/Library/Demo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Library/Library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Library/Library/Library.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Library/Readables/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Library/Readables/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Library/Readables/Readable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Library/Readables/Readable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Library/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Readables/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Readables/Book.java" afterDir="false" />
@@ -83,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1574839028000</updated>
       <workItem from="1574839031734" duration="6938000" />
-      <workItem from="1574868592694" duration="406000" />
+      <workItem from="1574868592694" duration="1702000" />
     </task>
     <servers />
   </component>

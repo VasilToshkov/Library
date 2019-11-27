@@ -16,13 +16,18 @@ public abstract class Readable  {
     private LocalDateTime lastTaken;
     private int maxPeriod;
     private boolean isAvailable= true;
+    private int rentPrice;
+    private int lihva;
 
-    public Readable(String name, String publisher, ReadableType readableType) {
+
+    public Readable(String name, String publisher, ReadableType readableType, int maxPeriod,int rentPrice,int lihva) {
         this.name = name;
         this.publisher = publisher;
         history = new HashMap<>();
         type=readableType;
-
+        this.maxPeriod = maxPeriod;
+        this.rentPrice = rentPrice;
+        this.lihva = lihva;
     }
 
 
@@ -42,7 +47,17 @@ public abstract class Readable  {
         history.put(lastTaken,LocalDateTime.now());
         isAvailable= true;
     }
+    private int rentTaxes(){
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime returnmentDeadline = lastTaken.plusSeconds(maxPeriod);
+        int extraTax =0;
+        while(!isAvailable()&&now.isAfter(returnmentDeadline)){
+            extraTax++;
+            now.minusSeconds(1);
+        }
+        return extraTax*(lihva) +rentPrice;
 
+    }
     public boolean isAvailable() {
         return isAvailable;
     }

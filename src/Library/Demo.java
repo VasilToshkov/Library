@@ -14,7 +14,11 @@ public class Demo {
         library.addBook(book);
         library.addBook(book2);
         library.addBook(book3);
-
-
+        library.takeReadable(book2);
+library.printCatalog();
+        System.out.println(book2.isAvailable());
+        library.returnBook(book2);
+        System.out.println(book2.isAvailable());
+        library.returnBook(book2);
     }
 }
