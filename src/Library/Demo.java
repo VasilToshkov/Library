@@ -15,9 +15,6 @@ public class Demo {
         library.addBook(book2);
         library.addBook(book3);
 
-    library.printCatalog();
-        int delay = -1* LocalDateTime.now().get();
-        System.out.println(delay);
 
     }
 }

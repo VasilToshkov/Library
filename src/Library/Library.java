@@ -26,8 +26,6 @@ public class Library {
                     return 1;
                 }
                 return -1;
-
-
             }));
         }
         books.get(book.getGenre()).add(book);
@@ -41,8 +39,12 @@ public class Library {
 
 
 
-    void takeReadable(Readable r) {                         //evokes from UseR
-            r.takeBook();
+    void takeReadable(Readable r) {
+        //evokes from UseR
+        if(r.getType() == ReadableType.MAGAZINES){
+            System.out.println("You can't take magazines home");
+        }
+        r.takeHome();
     }
     void returnBook(Readable r){
         r.returnBook();

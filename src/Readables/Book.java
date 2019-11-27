@@ -33,8 +33,5 @@ public class Book extends Readable {
                 ", genre=" + genre ;
     }
 
-//    @Override
-//    void takeBook() {
-//        this.g
-//    }
+
 }
