@@ -64,5 +64,6 @@ public abstract class Readable  {
 
     public ReadableType  getType(){
         return this.type;
+
     }
 }
