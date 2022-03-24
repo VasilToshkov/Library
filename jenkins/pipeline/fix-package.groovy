@@ -37,22 +37,7 @@ node("${node_name}") {
                         $class: 'Stash',
                         repoUrl: CHECKOUT_REPO
                 ],
-                doGenerateSubmoduleConfigurations: false,
-                extensions: [
-                        [$class: 'SubmoduleOption',
-                         disableSubmodules: false,
-                         parentCredentials: true,
-                         recursiveSubmodules: true,
-                         reference: '',
-                         trackingSubmodules: true]
-                ],
-                gitTool: 'Default',
-                submoduleCfg: [],
-                userRemoteConfigs: [
-                        [credentialsId: GITHUB_APP_ID,
-                         url: CHECKOUT_REPO
-                        ]
-                ]
+                gitTool: 'Default'
         ])
     }
     // stage('Get Latest Fix Number') {
