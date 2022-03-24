@@ -39,6 +39,7 @@ node("${node_name}") {
                 ],
                 gitTool: 'Default'
         ])
+        println"checkout"
     }
     // stage('Get Latest Fix Number') {
     //     jdk = tool name: 'java 1.8'
