@@ -55,52 +55,52 @@ node("${node_name}") {
                 ]
         ])
     }
-    stage('Get Latest Fix Number') {
-        jdk = tool name: 'java 1.8'
-        env.JAVA_HOME = "${jdk}"
+    // stage('Get Latest Fix Number') {
+    //     jdk = tool name: 'java 1.8'
+    //     env.JAVA_HOME = "${jdk}"
 
-        withCredentials([usernamePassword(credentialsId: GITHUB_APP_ID,
-                usernameVariable: 'GITHUB_APP',
-                passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
-            withGradle {
-                sh "./gradlew storeLatestFixNumnerToPropFile -Drebuild_fix=${rebuild_fix} -DGITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}"
-            }
+    //     withCredentials([usernamePassword(credentialsId: GITHUB_APP_ID,
+    //             usernameVariable: 'GITHUB_APP',
+    //             passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+    //         withGradle {
+    //             sh "./gradlew storeLatestFixNumnerToPropFile -Drebuild_fix=${rebuild_fix} -DGITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}"
+    //         }
 
-            def props = readProperties  file: 'fixes.property'
+    //         def props = readProperties  file: 'fixes.property'
 
-            FIX_NUMBER = props['FIX_NUMBER']
-            if (FIX_NUMBER == null || FIX_NUMBER.isEmpty())
-                throw new Exception('FIX_NUMBER property is missing')
-        }
-    }
-    stage('Build WMN') {
-        build job: WMN_BUILD_JOB, parameters: [
-                string(name: 'bas.build.status', value: "${build_status}")
-        ]
-    }
-    stage('Build BAM') {
-        build job: BAM_BUILD_JOB, parameters: [
-                string(name: 'bas.build.status', value: "${build_status}"),
-                string(name: 'SANDBOX_NAME', value: "BAM_PI_${SAG_RELEASE}"),
-                string(name: 'FIX_NUMBER', value: "${FIX_NUMBER}")
-        ]
-    }
-    stage('Upload Fix Packages') {
-        dir (BAM_BUILD_CODEBASE) {
-            withGradle {
-                sh "./gradlew uploadFixes --refresh-dependencies -Pbuild.patch=${FIX_NUMBER}"
-            }
-        }
-    }
-    stage('Tag the Build') {
-        withCredentials([usernamePassword(credentialsId: GITHUB_APP_ID,
-                usernameVariable: 'GITHUB_APP',
-                passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
-            dir (BAM_BUILD_CODEBASE) {
-                withGradle {
-                    sh "./gradlew createOrMoveTag -Pbuild.patch=${FIX_NUMBER} -DGITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}"
-                }
-            }
-        }
-    }
+    //         FIX_NUMBER = props['FIX_NUMBER']
+    //         if (FIX_NUMBER == null || FIX_NUMBER.isEmpty())
+    //             throw new Exception('FIX_NUMBER property is missing')
+    //     }
+    // }
+    // stage('Build WMN') {
+    //     build job: WMN_BUILD_JOB, parameters: [
+    //             string(name: 'bas.build.status', value: "${build_status}")
+    //     ]
+    // }
+    // stage('Build BAM') {
+    //     build job: BAM_BUILD_JOB, parameters: [
+    //             string(name: 'bas.build.status', value: "${build_status}"),
+    //             string(name: 'SANDBOX_NAME', value: "BAM_PI_${SAG_RELEASE}"),
+    //             string(name: 'FIX_NUMBER', value: "${FIX_NUMBER}")
+    //     ]
+    // }
+    // stage('Upload Fix Packages') {
+    //     dir (BAM_BUILD_CODEBASE) {
+    //         withGradle {
+    //             sh "./gradlew uploadFixes --refresh-dependencies -Pbuild.patch=${FIX_NUMBER}"
+    //         }
+    //     }
+    // }
+    // stage('Tag the Build') {
+    //     withCredentials([usernamePassword(credentialsId: GITHUB_APP_ID,
+    //             usernameVariable: 'GITHUB_APP',
+    //             passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+    //         dir (BAM_BUILD_CODEBASE) {
+    //             withGradle {
+    //                 sh "./gradlew createOrMoveTag -Pbuild.patch=${FIX_NUMBER} -DGITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}"
+    //             }
+    //         }
+    //     }
+    // }
 }
